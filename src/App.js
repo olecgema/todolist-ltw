@@ -6,13 +6,12 @@ function App() {
   const [job, setJob] = useState("");
   const [jobList, setJobList] = useState(() => {
     const storageJobList = JSON.parse(localStorage.getItem(JOB_KEY));
-    // Đảm bảo giá trị trả về là một mảng
     return Array.isArray(storageJobList) ? storageJobList : [];
   });
 
   const removeJob = (jobToRemove) => {
     setJobList((prevJobList) => {
-      // Đảm bảo prevJobList luôn là mảng trước khi gọi filter
+
       const newJobList = Array.isArray(prevJobList) 
         ? prevJobList.filter((item) => item !== jobToRemove) 
         : [];
@@ -28,7 +27,6 @@ function App() {
     }
 
     setJobList((prevState) => {
-      // Đảm bảo prevState luôn là mảng
       const newJobList = Array.isArray(prevState) 
         ? [...prevState, job] 
         : [job];
@@ -43,6 +41,7 @@ function App() {
 
   return (
     <div className="App" style={{ padding: 20 }}>
+      <h1>To do list</h1>
       <div style={{ border: "1px solid yellowgreen", padding: 20 }}>
         <input value={job} onChange={(e) => setJob(e.target.value)} />
         <button onClick={handleAddJob}>Add</button>
